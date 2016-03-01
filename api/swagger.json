@@ -1,0 +1,87 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Temperature",
+    "description": "API for temperature conversion",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/convert": {
+      "get": {
+        "x-swagger-router-controller": "Temperature",
+        "operationId": "convert",
+        "tags": ["/convert"],
+        "description": "Converts the requested temperature in the requested unit to all other units.",
+        "parameters": [
+          {
+            "name": "temperature",
+            "in": "query",
+            "description": "The temperature to be converted.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "unit",
+            "in": "query",
+            "description": "The unit, either 'C', 'F' or 'K'.",
+            "required": true,
+            "type": "string",
+            "enum": ["C", "F", "K"],
+            "default": "C"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Invalid request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successful request.",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ConvertedTemperature": {
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["C", "F", "K"]
+        }
+      },
+      "required": ["temperature", "unit"]
+    },
+    "Error": {
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": ["message"]
+    },
+    "Temperature": {
+      "properties": {
+        "conversions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConvertedTemperature"
+          }
+        }
+      },
+      "required": ["conversions"]
+    }
+  }
+}
