@@ -8,11 +8,11 @@ The proposed example is a simple temperature conversion API defined at `api/swag
 
 ### Mock mode
 
-Please follow these steps to run the API in `mock` mode:
+Please follow these steps to run the API in _mock_ mode:
 
-1. git checkout master
-2. npm install
-3. npm run dev
+1. `git checkout master`
+2. `npm install`
+3. `npm run dev`
 4. `curl -X GET --header 'Accept: application/json' 'http://localhost:3000/api/convert?temperature=10&unit=C'`
 
 You should see the following output:
@@ -31,11 +31,11 @@ You should see the following output:
 
 The difference between mock mode and live mode is that the code responsible for handling the actual temperature conversion is implemented in `controllers/Temperature.js`.
 
-Please follow these steps to run the API in live `live` mode:
+Please follow these steps to run the API in live _live_ mode:
 
-1. git checkout develop
-2. npm install
-3. npm Start
+1. `git checkout develop`
+2. `npm install`, if you haven't done it yet
+3. `npm start`
 4. `curl -X GET --header 'Accept: application/json' 'http://localhost:3000/api/convert?temperature=10&unit=C'`
 
 You should see the following output:
